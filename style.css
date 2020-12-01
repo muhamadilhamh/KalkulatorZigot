@@ -1,0 +1,105 @@
+/* Awal Home */
+
+body {
+    background: #39314F;
+}
+
+.jumbotron {
+    background: transparent;
+    background-size: cover;
+}
+
+.jumbotron .display-4,
+h3 {
+    color: #ffffff;
+    text-align: center;
+    font-family: Viga;
+
+}
+
+a {
+    color: #ffffff;
+    text-align: center;
+    font-family: Viga;
+}
+
+.konten {
+    background-color: #ffffff;
+    padding-top: 50px;
+    padding-bottom: 150px;
+    border-radius: 15px;
+    box-shadow: 0 3px 20px rgb(0, 0, 0, 0.5);
+    margin-top: -40px;
+}
+
+.rot-13 {
+    background-color: transparent;
+    width: 65%;
+    height: 65%;
+    margin-bottom: 35px;
+    margin-left: 18%;
+    margin-right: 20%;
+}
+
+.btn {
+    margin-top: 15px;
+    height: 65%;
+    width: 65%;
+    color: black;
+    padding-top: 7%;
+    border-radius: 10px;
+}
+
+.zigzag {
+    background-color: transparent;
+    width: 65%;
+    height: 65%;
+    margin-bottom: 35px;
+    margin-left: 18%;
+    margin-right: 20%;
+}
+
+/* Akhir Home */
+
+/* Awal Rot-13 */
+.input,
+.ouput {
+    background-color: #ffffff;
+    width: 90%;
+    height: 30%;
+    margin-bottom: 35px;
+    margin-left: 5%;
+    border-radius: 5px;
+    box-shadow: 0 0 2px rgb(0, 0, 0, 0.5);
+    border: 1px solid black;
+    padding-top: 2%;
+    padding-left: 2%;
+}
+
+.kontenR {
+    background-color: #5BA4CD;
+    padding-top: 50px;
+    border-radius: 15px;
+    box-shadow: 0 3px 20px rgb(0, 0, 0, 0.5);
+    margin-top: -40px;
+    padding-bottom: 80px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+
+}
+
+.btn1 {
+    margin-left: 87%;
+    border-radius: 5px;
+    background-color: #E3D1FE;
+    box-shadow: 0 1px 5px rgb(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+.jumbotron .display-4,
+h2 {
+    font-family: Viga;
+    margin-left: 5%;
+}
+
+/* Akhir Rot-13 */

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- css -->
+    <link href="https://fonts.googleapis.com/css2?family=Viga" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css">
+    
+    <title>Keriptuy</title>
+  </head>
+  <body>
+      <!-- Jumbotron -->
+    <div class="jumbotron ">
+        <div class="container ">
+                    <h1 class="display-4">CALCULATOR ZIGOT</h1>
+            </div>
+        </div>
+      </div>
+      <!-- Akhir jumbotron -->
+      <div class="container">
+          <div class="row">
+              <div class="col-lg kontenR">
+                <h2>Enkripsi</h2>
+                <textarea
+                class="textarea input"
+                id="inputField"
+                placeholder="Input your text here"
+                oninput="encode()"
+                onmouseover="this.focus()"
+                onmouseout="deselectField()"
+                aria-label="Input field"
+              ></textarea>
+              <button type="button" class="btn1" onclick="switchFields()">Switch</button>
+              <h2>Deskripsi</h2>
+              <textarea
+                class="textarea ouput"
+                id="outputField"
+                readonly
+                placeholder="The output will appear here"
+                onmouseover="selectField(this)"
+                onmouseout="deselectField()"
+                aria-label="Output field"
+              ></textarea>
+              </div>
+          </div>
+      </div>
+    <!-- Optional JavaScript -->
+    <script>
+        let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+        let input,
+          output = "";
+        const inputField = document.getElementById("inputField");
+        const outputField = document.getElementById("outputField");
+    
+        function encode() {
+          input = inputField.value;
+          input = input.split("");
+          output = "";
+          input.forEach(encodeForeach);
+    
+          outputField.value = output;
+        }
+    
+        function encodeForeach(item, index) {
+          let isLowercase = false;
+          if (item === item.toLowerCase()) {
+            isLowercase = true;
+          }
+          let position = alphabet.indexOf(item.toUpperCase());
+          if (position != -1) {
+            position += 13;
+            if (position >= alphabet.length) {
+              position -= alphabet.length;
+            }
+            item = alphabet[position];
+          }
+          if (isLowercase) {
+            item = item.toLowerCase();
+          }
+          output += item;
+        }
+    
+        const selectField = function(element) {
+          element.select();
+          element.setSelectionRange(0, 99999);
+        };
+        const deselectField = function() {
+          document.activeElement.selectionStart =
+            document.activeElement.selectionEnd;
+        };
+        const copyValue = function(element) {
+          // copy to clipboard
+          selectField(outputField);
+          document.execCommand("copy");
+          deselectField();
+          showTooltip(element, "Copied!");
+        };
+        const switchFields = function() {
+          // switch output and input text
+          input = inputField.value;
+          output = outputField.value;
+          inputField.value = output;
+          outputField.value = input;
+        };
+        const cleanFields = function() {
+          // wipe all field values
+          inputField.value = "";
+          outputField.value = "";
+        };
+        const showTooltip = function(element, message) {
+          // shows the tooltip
+          element.setAttribute("data-tooltip", message);
+        };
+        const hideTooltip = function(element) {
+          // hides the tooltip
+          element.removeAttribute("data-tooltip");
+        };
+      </script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
