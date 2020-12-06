@@ -17,6 +17,14 @@ h3 {
 
 }
 
+h4 {
+    color: #aaa;
+    text-align: center;
+    font-weight: 300;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
 a {
     color: #ffffff;
     text-align: center;
@@ -103,3 +111,31 @@ h2 {
 }
 
 /* Akhir Rot-13 */
+
+/* Zigzag */
+.btn2c {
+    margin-left: 83%;
+    border-radius: 5px;
+    background-color: #E3D1FE;
+    box-shadow: 0 1px 5px rgb(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+    margin-top: 1%;
+}
+
+.btn2d {
+    margin-left: 81%;
+    border-radius: 5px;
+    background-color: #E3D1FE;
+    box-shadow: 0 1px 5px rgb(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+    margin-top: 1%;
+}
+
+.key,
+.form-control {
+    margin-left: 7%;
+}
+
+p {
+    margin-left: 5%;
+}
