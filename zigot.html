@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Viga" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <title>Keriptuy</title>
+</head>
+
+<body>
+  <div class="jumbotron ">
+    <div class="container ">
+      <h1 class="display-4">CALCULATOR ZIGOT</h1>
+    </div>
+  </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg kontenR">
+        <h1 style="text-align:center;">ROT-13</h1>
+        <h2>Enkripsi/Dekripsi</h2>
+        <textarea class="textarea input" id="inputField" placeholder="Input your text here" oninput="encode()"
+          onmouseover="this.focus()" onmouseout="deselectField()" aria-label="Input field"></textarea>
+        <h2>Ciphertext/Plaintext</h2>
+        <textarea class="textarea ouput" id="outputField" readonly placeholder="The output will appear here"
+          onmouseover="selectField(this)" onmouseout="deselectField()" aria-label="Output field"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="container ">
+    <h4 class="lead">
+      </h3>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg kontenR">
+        <h1 style="text-align:center;">ZigZag</h1>
+        <h2>Enkripsi</h2>
+        <form>
+          <div class="row">
+            <label for="numrails" class="key">Key</label>
+            <div class="col-3">
+              <input type="text" class="form-control" id="numrails" placeholder="Input" name="rails">
+            </div>
+            <div class="col-11">
+              <label for="question"></label>
+              <input type="text" class="form-control" name="plaintext" id="question"
+                placeholder="Input your plain text">
+            </div>
+            <button type="button" class="btn2c" onclick="anstoqsn();" data-toggle="modal"
+              data-target=".bd-cipher-modal-sm">Cipher</button>
+            <div class="modal fade bd-cipher-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <h2>Hasil Enkripsi</h2>
+                  <pre><p id="cifd"></p></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+
+        <h2>Deskripsi</h2>
+        <div>
+          <div class="row">
+            <label for="num_rails" class="key">Key</label>
+            <div class="col-3">
+              <input type="text" class="form-control" id="num_rails" placeholder="Masukan kunci" name="rails">
+            </div>
+            <div class="col-11">
+              <label for="decif"></label>
+              <input type="text" class="form-control" name="deciph" id="decif" placeholder="Input your cipher text">
+            </div>
+            <button type="button" class="btn2d" onclick="decif();" data-toggle="modal"
+              data-target=".bd-decipher-modal-sm">Decipher</button>
+            <div class="modal fade bd-decipher-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <h2>Hasil Deskripsi</h2>
+                  <pre><p id="decifd"></p></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container ">
+    <h4 class="lead"> Kelompok 1 © 2020 </h3>
+  </div>
+
+  <script>
+    function anstoqsn() {
+      var qsn = document.getElementById("outputField").value;
+      var num = 0;
+      var i;
+      var j;
+      var directon_flag;
+      var lin;
+      var col;
+      var matrix = [
+        []
+      ];
+      var len = qsn.length;
+      console.log("Here");
+      num = document.getElementById("numrails").value;
+      console.log(qsn);
+      console.log(num);
+      for (i = 0; i < num; i++) {
+        matrix[i] = [];
+        console.log("Matrix is " + matrix);
+      }
+      i = 0;
+      j = 0;
+      direction_flag = 0;
+      lin = 0;
+
+      while (lin != len) {
+
+        matrix[i][j] = qsn[lin];
+        if (!direction_flag)
+          i++;
+        else
+          i--;
+
+        if (i == num) {
+          direction_flag = 1;
+          i--;
+          i--;
+        }
+
+        if (i == 0)
+          direction_flag = 0;
+        lin++;
+        j++;
+      }
+      console.log("Matrix is " + matrix);
+      col = j;
+      i = 0;
+      console.log(matrix);
+      var rfc = [];
+      var ind = 0;
+      for (i = 0; i < num; i++) {
+        matrix[i].forEach(function hasEmptyElement(array) {
+          rfc[ind] = array;
+          ind++;
+        });
+      }
+      console.log("RFC " + rfc);
+      document.getElementById("cifd").innerHTML = rfc.join("");
+      document.getElementById("decif").value = rfc.join("");
+    }
+
+    function decif() {
+      console.log("Decoding");
+      var column;
+      var no_of_rails;
+      var cif = [];
+      var decif = [
+        []
+      ];
+
+      cif = document.getElementById("decif").value;
+      no_of_rails = document.getElementById("num_rails").value;
+      column = cif.length;
+
+      console.log("Cif " + cif);
+      console.log("no_of_rails " + no_of_rails);
+      console.log("column " + column);
+      i = 0;
+      j = 0;
+      var k = 0;
+      decif[0][0] = cif[0];
+      var row = parseInt(no_of_rails) - 1;
+      var dircn_flag = 0;
+      for (j = 0; j < column; j++) {
+        if (decif[i] == null) {
+          decif[i] = [];
+        }
+
+        console.log("decif[i] is " + decif[i]);
+        console.log("decif is " + decif);
+        console.log("cif is " + cif);
+        decif[i][j] = 0;
+
+        console.log("Here?");
+        decif[i][j] = cif[k];
+        k++;
+        if (dircn_flag === 1) {
+          i--;
+          console.log("Decrementing");
+        } else {
+          i++;
+          console.log("Incrementing");
+        }
+        if (i === row) {
+          dircn_flag = 1;
+        } else if (i === 0) {
+          dircn_flag = 0;
+        }
+        console.log("Direction flag is " + dircn_flag);
+      }
+
+      k = 0;
+      for (i = 0; i < no_of_rails; i++) {
+        for (j = 0; j < column; j++) {
+          if (decif[i][j] != null) {
+            decif[i][j] = cif[k];
+            k++;
+          }
+        }
+      }
+
+      console.log("DEcif " + decif);
+      var orig_str = [];
+      var inde = 0;
+      i = 0;
+      dircn_flag = 0;
+      for (j = 0; j < column; j++) {
+        if (!orig_str[inde]) {
+          orig_str[inde] = [];
+          console.log("Here in decipher's if condition?");
+        }
+        console.log("orig_str[inde] " + orig_str[inde]);
+        console.log("decif[i][j] " + decif[i][j]);
+        console.log("Here in decipher?");
+        orig_str[inde] = decif[i][j];
+        inde++;
+        if (dircn_flag === 1) {
+          i--;
+          console.log("Decrementing");
+        } else {
+          i++;
+          console.log("Incrementing");
+        }
+        if (i === row) {
+          dircn_flag = 1;
+        } else if (i === 0) {
+          dircn_flag = 0;
+        }
+        console.log("Direction flag is " + dircn_flag);
+      }
+
+      console.log("De-ciphered Rail fence format " + decif);
+      console.log("Deciphered_orig_str " + orig_str);
+      document.getElementById("decifd").innerHTML = orig_str.join("");
+      document.getElementById("inputField").value = orig_str.join("");
+      encode();
+    }
+  </script>
+
+
+  <script>
+    let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+    let input,
+      output = "";
+    const inputField = document.getElementById("inputField");
+    const outputField = document.getElementById("outputField");
+
+    function encode() {
+      input = inputField.value;
+      input = input.split("");
+      output = "";
+      input.forEach(encodeForeach);
+
+      outputField.value = output;
+      document.getElementById("question").value = output;
+    }
+
+    function encodeForeach(item, index) {
+      let isLowercase = false;
+      if (item === item.toLowerCase()) {
+        isLowercase = true;
+      }
+      let position = alphabet.indexOf(item.toUpperCase());
+      if (position != -1) {
+        position += 13;
+        if (position >= alphabet.length) {
+          position -= alphabet.length;
+        }
+        item = alphabet[position];
+      }
+      if (isLowercase) {
+        item = item.toLowerCase();
+      }
+      output += item;
+    }
+
+    const selectField = function (element) {
+      element.select();
+      element.setSelectionRange(0, 99999);
+    };
+    const deselectField = function () {
+      document.activeElement.selectionStart =
+        document.activeElement.selectionEnd;
+    };
+    const copyValue = function (element) {
+      selectField(outputField);
+      document.execCommand("copy");
+      deselectField();
+      showTooltip(element, "Copied!");
+    };
+    const cleanFields = function () {
+      inputField.value = "";
+      outputField.value = "";
+    };
+    const showTooltip = function (element, message) {
+      element.setAttribute("data-tooltip", message);
+    };
+    const hideTooltip = function (element) {
+      element.removeAttribute("data-tooltip");
+    };
+  </script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>
